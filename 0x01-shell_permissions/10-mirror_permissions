@@ -1,2 +1,2 @@
 #!/bin/bash
-getfacl -R hello > olleh
+chmod --reference=olleh hello
