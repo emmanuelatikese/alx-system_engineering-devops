@@ -1,2 +1,2 @@
 #!/bin/bash
-sort list
+sort -n 1 list
