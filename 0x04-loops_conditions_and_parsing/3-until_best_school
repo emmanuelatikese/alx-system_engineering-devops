@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# this make use of until
+
+x=0
+
+until [ $x -eq 10 ]
+do
+	echo "Best School"
+	x=$((x+1))
+done
