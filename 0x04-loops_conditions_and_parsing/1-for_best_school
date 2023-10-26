@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-x=0
-
-while [ $x -lt 10 ]
+for ((x=0; x<10; x++))
 do
 	echo -e "Best School"
-	x=$((x+1))
 done
