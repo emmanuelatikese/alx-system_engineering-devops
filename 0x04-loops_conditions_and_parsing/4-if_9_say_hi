@@ -3,9 +3,9 @@
 
 x=0
 
-while [ $x -lt 9 ]
+while [ $x -lt 10 ]
 do
-	if [ $x = 8 ]
+	if [ $x = 9 ]
 	then
 		echo "Hi"
 	fi
