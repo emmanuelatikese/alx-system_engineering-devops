@@ -3,7 +3,7 @@
 
 x=0
 i=1
-echo "Hour: 0"
+echo "Hour: $x"
 
 while [ $i -lt 10 ]
 do
@@ -13,7 +13,7 @@ do
 		echo "$x"
 		if [ $x -eq 59 ]
 		then
-			echo "Hour: 1"
+			echo "Hour: $i"
 		fi
 	done
 	echo "$i"
