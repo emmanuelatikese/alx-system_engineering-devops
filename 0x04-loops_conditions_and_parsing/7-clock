@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# eih mhen no comment for now
+
+x=0
+i=1
+echo "Hour: 0"
+
+while [ $i -lt 10 ]
+do
+	while [ $x -lt 59 ]
+	do
+		x=$((x+1))
+		echo "$x"
+		if [ $x -eq 59 ]
+		then
+			echo "Hour: 0"
+		fi
+	done
+	echo "$i"
+	i=$((i+1))
+done
