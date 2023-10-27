@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# thi is another comment
+
+x=0
+
+while [ $x -lt 10 ]
+do
+	if [ $x -eq 8 ]
+	then
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	x=$((x+1))
+done
