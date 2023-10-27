@@ -5,7 +5,7 @@ x=0
 
 while [ $x -lt 9 ]
 do
-	if [ $x -eq 8 ]
+	if [ $x = 8 ]
 	then
 		echo "Hi"
 	fi
