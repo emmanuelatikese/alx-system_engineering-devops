@@ -13,7 +13,7 @@ do
 		echo "$x"
 		if [ $x -eq 59 ]
 		then
-			echo "Hour: 0"
+			echo "Hour: 1"
 		fi
 	done
 	echo "$i"
