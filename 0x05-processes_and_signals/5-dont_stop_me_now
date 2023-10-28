@@ -5,5 +5,5 @@ i=$(pgrep "bash ./4-to_infinity_and_beyond" -f)
 
 while [ "$i" ]
 do
-        kill "$i" -15
+        kill -15 "$i"
 done
