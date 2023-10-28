@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #this is another work
 
-i=$(pgrep "bash ./4-to_infinity_and_beyond")
+i=$(pgrep "bash ./4-to_infinity_and_beyond" -f)
 
 while [ "$i" ]
 do
