@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #this is another work
 
-i=pgrep $"bash ./4-to_infinity_and_beyond""
+i=$"pgrep ./4-to_infinity_and_beyond"
 
 while [ $i ]
 do
-        kill $i
+        kill $i -15
 done
