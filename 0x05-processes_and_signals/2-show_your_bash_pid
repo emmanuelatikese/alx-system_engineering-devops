@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # this is a comment for sure
 # shellcheck disable=SC2009
-
+ps axuf | grep bash
