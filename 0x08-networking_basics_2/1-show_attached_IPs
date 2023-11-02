@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#this is comment watch the next line
+ip -4 -o addr show | grep -Eo 'inet [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'
