@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#working on config
+
+Host 18.234.105.203
+User ubuntu
+IdentityFile ~/.ssh/school
+PasswordAuthentication no
