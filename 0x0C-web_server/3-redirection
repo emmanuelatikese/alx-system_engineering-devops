@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
-# Step 1: Install Nginx web server (assuming you have the 1-install_nginx_web_server script)
-source ./1-install_nginx_web_server.sh
+# Update package list
+sudo apt update
 
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-add="server {
-        listen 80;
-        listen [::]:80;
+# Install Nginx if not already installed
+sudo apt install -y nginx
 
-        root /var/www/html;
-        index index.html index.htm index.nginx-debian.html;
+# Define the configuration file path
+config_file="/etc/nginx/sites-available/default"
 
-        server_name _;
-	location /redirect_me {
-            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-}"
+# Configure redirection in Nginx
+echo "Configuring Nginx redirection..."
+sudo sed -i '/location \/ {/a \\tlocation /redirect_me {\\n\\t\\treturn 301 http://your_redirect_url;\\n\\t}' "$config_file"
 
-echo -e "$add" > /etc/nginx/sites-available/redirect
-ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+# Test Nginx configuration
+sudo nginx -t
 
-nginx -t
+# Reload Nginx to apply the changes
+sudo systemctl reload nginx
 
-systemctl reload nginx
+echo "Redirection configured successfully. Access /redirect_me to test the redirection."
+
