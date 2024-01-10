@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+'''This is the all adding header to a server'''
+
+sudo apt update
+sudo apt install nginx -y
+
+sudo print %s "server {
+        listen 80;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        add-header X-Served-By $HOSTNAME;
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+        location /redirect_me {\n\t\treturn 301 http://your_redirect_url;\n\t}
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+        # pass PHP scripts to FastCGI server
+        #
+        #location ~ \.php$ {
+        #       include snippets/fastcgi-php.conf;
+        #
+        #       # With php-fpm (or other unix sockets):
+        #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        #       # With php-cgi (or other tcp sockets):
+        #       fastcgi_pass 127.0.0.1:9000;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #       deny all;
+        #}
+}" > /etc/nginx/sites-available/default
+
+sudo systemctl restart nginx
