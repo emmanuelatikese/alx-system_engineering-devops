@@ -3,8 +3,8 @@
 
 sudo apt update
 sudo apt install nginx -y
-sudo chown $USER:$USER /etc/nginx/sites-available/
-sudo chown $USER:$USER /var/www/html/
+sudo chown "$USER":"$USER" /etc/nginx/sites-available/
+sudo chown "$USER":"$USER" /var/www/html/
 echo "##
 # You should look at the following URL's in order to grasp a solid understanding
 # of Nginx configuration files in order to fully unleash the power of Nginx.
@@ -45,7 +45,7 @@ server {
         #
         # include snippets/snakeoil.conf;
 
-        add_header X-Served-By $HOSTNAME;
+        add_header X-Served-By \$HOSTNAME;
         root /var/www/html;
 
         # Add index.php to the list if you are using PHP
@@ -56,7 +56,7 @@ server {
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
+                try_files \$uri \$uri/ =404;
         }
 
         # pass PHP scripts to FastCGI server
@@ -94,7 +94,7 @@ server {
 #       index index.html;
 #
 #       location / {
-#               try_files $uri $uri/ =404;
+#               try_files \$uri \$uri/ =404;
 #       }
 #}" > /etc/nginx/sites-available/default
 
