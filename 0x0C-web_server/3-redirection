@@ -1,22 +1,31 @@
 #!/usr/bin/env bash
-# Update package list
-sudo apt update
+# This is all about the redirection
 
-# Install Nginx if not already installed
-sudo apt install -y nginx
+sudo apt update -y
+sudo apt install nginx -y
+sudo chown $USER:$USER /etc/nginx/sites-available/
+mkdir -p /var/www/html
+sudo chmod -R 755 /var/www
+sudo chown -R $USER:$USER /var/www/html
+sudo echo "Hello World!" > /var/www/html/index.html
 
-# Define the configuration file path
-config_file="/etc/nginx/sites-available/default"
+echo "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-# Configure redirection in Nginx
-echo "Configuring Nginx redirection..."
-sudo sed -i '/location \/ {/a \\tlocation /redirect_me {\\n\\t\\treturn 301 http://your_redirect_url;\\n\\t}' "$config_file"
+        root /var/www/html;
 
-# Test Nginx configuration
-sudo nginx -t
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
 
-# Reload Nginx to apply the changes
-sudo systemctl reload nginx
+        server_name _;
 
-echo "Redirection configured successfully. Access /redirect_me to test the redirection."
+        location / {
+                try_files $uri $uri/ =404;
+        }
 
+        if (\$request_filename ~ redirect_me){
+                rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        }
+}" > /etc/nginx/sites-available/default
+sudo systemctl restart nginx
