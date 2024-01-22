@@ -3,7 +3,7 @@
 
 sudo apt update -y
 sudo apt install nginx -y
-sudo chown $USER:$USER /etc/nginx/sites-available/
+sudo chown \$USER:\$USER /etc/nginx/sites-available/
 mkdir -p /var/www/html
 sudo chmod -R 755 /var/www
 sudo chown -R \$USER:\$USER /var/www/html
