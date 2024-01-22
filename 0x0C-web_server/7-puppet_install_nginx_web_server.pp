@@ -1,37 +1,32 @@
 # Update package repositories
-apt::update { 'dist_update':
-  before => Package['nginx']
+
+exec { 'dist update':
+        command  => '/usr/bin/apt-get update',
+        provider => 'shell'
 }
 
-# Install Nginx package
 package { 'nginx':
   ensure  => 'installed',
-  require => Apt::Update['dist_update'],
+  require => Exec['dist update']
 }
 
-file { '/var/www/html/index.html':
-  ensure  => file,
+file {'/var/www/html/index.html':
+  path    => '/var/www/html/index.html',
   content => 'Hello World!',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  mode    => '7624',
+  owner   => $USER,
+  group   => $USER,
+  mode    => '0644',
 }
 
-file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => template('module_name/nginx_config.erb'), # Use a template for better readability and maintainability
-  require => File['/var/www/html/index.html'],
-  notify  => Service['nginx'],
+exec {'redirect_me':
+  command  => "sed -i '20i\\
+        location ~ redirect_me {\\
+            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\\
+        }' /etc/nginx/sites-available/default",
+  provider => 'shell'
 }
 
-nginx::resource::vhost { 'default':
-  ensure   => present,
-  vhost    => true,
-  require  => File['/etc/nginx/sites-available/default'],
-}
-
-service { 'nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx'],
+service {'nginx':
+  ensure  => running,
+  require => Package['nginx']
 }
