@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#This is all about the haproxy
+
+sudo apt update
+sudo apt install haproxy
+
+sudo chown -R "$USER":"$USER" /etc/haproxy/
+sudo chown -R "$USER":"$USER" /etc/default/
+
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bckp
+
+echo "defaults
+        mode    http
+        timeout connect 10s
+        timeout client  10s
+        timeout server  10s
+
+frontend atsi25_frontend
+        bind *:80
+        default_backend atsi25_backend
+
+backend atsi25_backend
+        balance roundrobin
+        server 68641-web-01 18.234.105.203:80 check
+        server 68641-web-02 54.82.196.134:80 check
+" > /etc/haproxy/haproxy.cfg
+
+echo 'ENABLED=1' >> /etc/default/haproxy
+
+sudo service haproxy restart
