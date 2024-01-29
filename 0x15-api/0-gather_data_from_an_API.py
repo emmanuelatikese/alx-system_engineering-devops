@@ -14,4 +14,4 @@ if __name__ == "__main__":
         tol = len(req_title.json())
         print('Employee {} is done with tasks({}/{}):'
               .format(req_name.json()[0].get('name'), lef, tol))
-        [print('\t{}'.format(x.get('title'))) for x in comp]
+        [print('     {}'.format(x.get('title'))) for x in comp]
