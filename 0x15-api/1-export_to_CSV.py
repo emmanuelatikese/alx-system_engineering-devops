@@ -12,13 +12,14 @@ if __name__ == "__main__":
         req_name = requests.get(name + argv[1])
 
         rt = req_title.json()
-        i = 0
-        while i < len(rt):
-            rt[i]['username'] = req_name.json()[0].get('username')
-            rt[i].pop('id')
-            i += 1
-        fi = ['userId', 'username', 'completed', 'title']
-        with open('2.csv', 'w', newline='') as f:
-            c = csv.DictWriter(f, fi)
-            c.writeheader()
-            c.writerows(rt)
+        name = req_name.json()[0].get('username')
+        filename = "{}.csv".format(argv[1])
+        with open(filename, 'w') as f:
+            pass
+
+        with open(filename, 'a') as r:
+            for x in rt:
+                uId = x.get("userId")
+                com = x.get("completed")
+                title = x.get("title")
+                r.write('"{}","{}","{}","{}"\n'.format(uId, name, com, title))
