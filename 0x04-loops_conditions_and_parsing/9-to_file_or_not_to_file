@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # Checking files
 filename="./school"
-ln=$(wc -l "$filename" | awk '{print $1}')
-
 if [ -e "$filename" ]; then
     echo "school file exists"
-    if [ "$ln" -eq 0 ]; then
+    if [ ! -s "$filname" ]; then
         echo "school file is empty"
     else
         echo "school file is not empty"
