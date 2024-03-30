@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 #changing listing format
-lt=$(find . -type f -name '[0-9]*')
-
-for filename in $lt; do
-    if [ -f "$filename" ]; then
-	new_f="${filename#./[0-9]-}"
-        echo "$new_f"
-    fi
+for fname in *; do
+	if [ -f "$fname" ]; then
+		newf="${fname#*-}"
+		echo "$newf"
+	fi
 done
