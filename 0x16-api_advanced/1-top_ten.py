@@ -11,6 +11,8 @@ def top_ten(subreddit):
         try:
             dt = req.json()
             dt.get('data').get('children')
-            [print(x.get('data').get('title')) for x in data]
+            title = dt.get('data').get('title')
+            for x in data:
+                print(x)
         except Exception:
             print("None")
