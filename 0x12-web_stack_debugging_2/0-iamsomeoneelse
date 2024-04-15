@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#This is all me
+
+sudo -u "$1" whoami
