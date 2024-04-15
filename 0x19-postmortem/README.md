@@ -11,14 +11,14 @@
 * 11:00 PM: Investigated Nginx settings.
 * 2:30 AM: Fixed reverse proxy config.
 ## Root Cause and Resolution
- Cause: A misconfigured reverse proxy (Nginx) was blocking traffic on port 80.
+* Cause: A misconfigured reverse proxy (Nginx) was blocking traffic on port 80.
 Specifically, a recent deployment introduced conflicting rules.
-*Resolution:
+* Resolution:
 Corrected Nginx configuration, allowing traffic through.
 
 ## Improvements:
-Documentation: Detailed Nginx configuration guidelines.
-Testing: Rigorous testing of deployments before production rollout.
-Redundancy: Set up a secondary port 80 proxy for failover.
+* Documentation: Detailed Nginx configuration guidelines.
+* Testing: Rigorous testing of deployments before production rollout.
+* Redundancy: Set up a secondary port 80 proxy for failover.
 
 
